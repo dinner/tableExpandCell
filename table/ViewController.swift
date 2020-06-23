@@ -45,11 +45,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         if self.dropAr.contains(indexPath.row){
             cell?.bt_drop.isSelected = true
-            cell?.setIsDrop(b: true)
+            cell?.b_drop = true
         }
         else{
             cell?.bt_drop.isSelected = false
-            cell?.setIsDrop(b: false)
+            cell?.b_drop = false
         }
         return cell!
     }

@@ -13,6 +13,15 @@ class TableViewCell: UITableViewCell {
     
     var clickBlock:(Bool)->() = {(Bool) -> () in}
     var _b_drop:Bool = false
+    var b_drop:Bool{
+        set {
+            _b_drop = newValue
+            setNeedsUpdateConstraints()
+        }
+        get {
+            return _b_drop
+        }
+    }
     var _lb_name:UILabel?
     var lb_name:UILabel{
         get {
@@ -81,11 +90,6 @@ class TableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-    }
-    
-    func setIsDrop(b:Bool){
-        self._b_drop = b;
-        setNeedsUpdateConstraints()
     }
     
     override func updateConstraints() {
