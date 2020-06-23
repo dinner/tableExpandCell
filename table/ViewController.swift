@@ -44,12 +44,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self?.table.reloadRows(at: [indexPath], with: .automatic)
         }
         if self.dropAr.contains(indexPath.row){
-            cell?._b_drop = true
             cell?.bt_drop.isSelected = true
+            cell?.setIsDrop(b: true)
         }
         else{
-            cell?._b_drop = false
             cell?.bt_drop.isSelected = false
+            cell?.setIsDrop(b: false)
         }
         return cell!
     }

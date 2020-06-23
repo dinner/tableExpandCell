@@ -49,20 +49,22 @@ class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.backgroundColor = UIColor.orange
         self.selectionStyle = .none
         
-        self.addSubview(self.bt_drop)
-        self.addSubview(self.lb_name)
+        self.contentView.addSubview(self.bt_drop)
+        self.contentView.addSubview(self.lb_name)
+        
         self.bt_drop.mas_makeConstraints { (make) in
             make?.bottom.equalTo()(-10)
             make?.size.equalTo()(CGSize(width: 20, height: 20))
             make?.right.equalTo()(-10)
         }
+
         self.lb_name.mas_makeConstraints { (make) in
             make?.bottom.equalTo()(self.bt_drop.mas_top)?.offset()(-10)
-            make?.center.equalTo()(self)
-            make?.top.equalTo()(self)?.offset()(10)
+            make?.top.equalTo()(10)
             make?.left.equalTo()(10)
         }
     }
@@ -81,10 +83,13 @@ class TableViewCell: UITableViewCell {
 
     }
     
+    func setIsDrop(b:Bool){
+        self._b_drop = b;
+        setNeedsUpdateConstraints()
+    }
+    
     override func updateConstraints() {
-        super.updateConstraints()
-        
-        if _b_drop {
+        if self._b_drop {
             self.bt_drop.mas_updateConstraints { (make) in
                 make?.bottom.equalTo()(-50)
             }
@@ -94,6 +99,7 @@ class TableViewCell: UITableViewCell {
                 make?.bottom.equalTo()(-10)
             }
         }
+        super.updateConstraints()
     }
 
 }
